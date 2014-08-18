@@ -154,7 +154,9 @@ _.extend(Marionette.Region.prototype, Backbone.Events, {
       // to the currentView since once a view has been destroyed
       // we can not reuse it.
       view.once('destroy', _.bind(this.empty, this));
+
       view.render();
+      this.listenTo(view, 'all', this._onViewEvent);
 
       if (isChangingView) {
         this.triggerMethod('before:swap', view);
@@ -177,6 +179,12 @@ _.extend(Marionette.Region.prototype, Backbone.Events, {
     }
 
     return this;
+  },
+
+  _onViewEvent: function() {
+    var args = slice.apply(arguments);
+    args[0] = 'view:'+args[0];
+    this.trigger.apply(this, args);
   },
 
   _ensureElement: function(){
