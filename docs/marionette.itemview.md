@@ -154,6 +154,8 @@ view.ui.paragraph.text();        // returns 'Hello World'
 view.ui.button.trigger('click'); // logs 'I clicked the button!'
 ```
 
+Another use case is when you want to attach a `Marionette.ItemView` to a SVG graphic or canvas element, to provide a uniform view layer interface to non-standard DOM nodes.
+
 ## Events and Callback Methods
 
 There are several events and callback methods that are called
